@@ -80,33 +80,47 @@ For significant structural changes to the spec, open an issue first to discuss b
 
 ---
 
-### 3. Build vertical extensions
+### 3. Deepen or add vertical extensions
 
-The education-specific accessibility section (section 4.5 in the spec) is a model for **vertical extensions** — domain-specific governance requirements that apply to a particular industry but not universally.
+Section 4.5 of the spec contains domain-specific governance requirements for four industries: Education, Healthcare, Financial services, and Government. These are starting points — each vertical has more depth than a single section can capture.
 
-Vertical extensions we want to develop:
+**Ways to contribute to existing verticals:**
 
-**Healthcare**
-- HIPAA-influenced UI patterns (what information can appear where, session timeout requirements, audit trail implications for UI decisions)
-- Clinical vs. patient-facing accessibility considerations
+**Education (4.5a)**
+- Assistive technology testing protocols for institutional environments (JAWS + older browsers, switch access in classroom settings)
+- LMS-specific governance patterns (Canvas, Blackboard, Moodle)
+- Assessment accessibility edge cases beyond the core checklist
+
+**Healthcare (4.5b)**
+- HIPAA-influenced UI patterns — what information can appear where, audit trail implications for UI decisions
+- Clinical vs. patient-facing governance — the same organization often needs radically different rules for each
 - Emergency and critical-information UI patterns that override standard design conventions
+- EHR integration governance — when your UI surfaces data from external clinical systems
 
-**Financial services**
-- Regulatory disclosure requirements that affect UI layout and copy
+**Financial services (4.5c)**
 - Fraud and security UI patterns that must be consistent across products
 - Accessibility requirements for aging and low-literacy user populations
+- Mobile banking governance — native app vs. web parity requirements
 
-**Government and civic tech**
-- Plain language requirements beyond standard readability scores
-- Multi-language and translation governance
-- Low-bandwidth and legacy device accessibility
+**Government and civic tech (4.5d)**
+- Multi-language and translation governance — which content must be translated, what the fallback behavior is
+- Low-bandwidth and legacy device testing protocols
+- Procurement compliance documentation patterns
+
+**Verticals we want to add:**
 
 **Enterprise software**
 - Admin vs. end-user interface governance within the same product
-- Role-based UI complexity patterns
-- Data density and information architecture for power users
+- Role-based UI complexity patterns — what a power user sees vs. a casual user
+- Data density and information architecture for tool-dense environments
+- Multi-tenant governance — when the same UI serves customers with different brand requirements
 
-To propose a vertical extension, open an issue with the title `vertical: [industry]` and describe the governance requirements specific to that domain.
+**Media and publishing**
+- Parent brands managing acquired titles with different audiences
+- Editorial vs. product UI governance within the same organization
+- Syndication and licensing governance for UI components
+
+To propose a new vertical or deepen an existing one, open an issue with the title `vertical: [industry]` and describe the governance requirements specific to that domain.
 
 ---
 
