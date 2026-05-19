@@ -1,5 +1,4 @@
-[README.md](https://github.com/user-attachments/files/27973719/README.md)
-# designgov# designgov.md
+# designgov.md
 
 > Brand governance contracts for AI-assisted development.  
 > The layer above `DESIGN.md`.
