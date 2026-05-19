@@ -1,1 +1,1000 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>design.md — Meridian Learning Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0F1624;
+    --ink-mid: #3D4A63;
+    --ink-light: #6B7A99;
+    --ink-faint: #C4CCDC;
+    --paper: #F9F8F6;
+    --paper-warm: #F2EFE9;
+    --white: #FFFFFF;
+    --tier-a: #1A5EAB;
+    --tier-a-bg: #EEF4FB;
+    --tier-a-border: #AECBEE;
+    --tier-b: #007C91;
+    --tier-b-bg: #E6F5F8;
+    --tier-b-border: #9DD5DF;
+    --tier-c: #5C4E8A;
+    --tier-c-bg: #F0EDF8;
+    --tier-c-border: #C2B5E0;
+    --accent: #E8450A;
+    --success: #1A7F5A;
+    --warning: #B45309;
+    --error: #C0392B;
+    --sidebar-w: 260px;
+    --header-h: 60px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: var(--header-h);
+    background: var(--ink);
+    display: flex; align-items: center;
+    padding: 0 24px 0 calc(var(--sidebar-w) + 24px);
+    gap: 16px;
+  }
+  .header-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px; color: var(--white);
+    letter-spacing: 0.01em;
+  }
+  .header-logo span { color: #F5A623; }
+  .header-meta {
+    margin-left: auto;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .status-pill {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.06em;
+    padding: 4px 10px; border-radius: 20px;
+    background: rgba(26,127,90,0.25); color: #7DDCB5;
+    text-transform: uppercase;
+  }
+  .version-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; color: #6B7A99;
+  }
+
+  /* ── SIDEBAR ── */
+  aside {
+    position: fixed; top: var(--header-h); left: 0; bottom: 0;
+    width: var(--sidebar-w);
+    background: var(--white);
+    border-right: 1px solid var(--ink-faint);
+    overflow-y: auto;
+    padding: 24px 0;
+  }
+  .nav-section-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-light);
+    padding: 16px 20px 6px;
+  }
+  .nav-section-label:first-child { padding-top: 4px; }
+  .nav-link {
+    display: block;
+    padding: 7px 20px;
+    font-size: 13px; color: var(--ink-mid);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: all 0.15s;
+  }
+  .nav-link:hover { color: var(--ink); background: var(--paper); }
+  .nav-link.active {
+    color: var(--tier-a);
+    border-left-color: var(--tier-a);
+    background: var(--tier-a-bg);
+    font-weight: 500;
+  }
+  .nav-sub {
+    padding: 5px 20px 5px 32px;
+    font-size: 12px; color: var(--ink-light);
+    text-decoration: none;
+    display: block;
+    transition: color 0.15s;
+  }
+  .nav-sub:hover { color: var(--ink-mid); }
+
+  /* ── TIER LEGEND in sidebar ── */
+  .tier-legend {
+    margin: 20px 16px 0;
+    border: 1px solid var(--ink-faint);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .tier-leg-item {
+    padding: 8px 12px;
+    font-size: 11px; font-weight: 500;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .tier-leg-item:not(:last-child) { border-bottom: 1px solid var(--ink-faint); }
+  .tier-dot {
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  }
+  .tier-leg-item:nth-child(1) .tier-dot { background: var(--tier-a); }
+  .tier-leg-item:nth-child(2) .tier-dot { background: var(--tier-b); }
+  .tier-leg-item:nth-child(3) .tier-dot { background: var(--tier-c); }
+  .tier-leg-label { color: var(--ink-mid); }
+
+  /* ── MAIN CONTENT ── */
+  main {
+    margin-left: var(--sidebar-w);
+    margin-top: var(--header-h);
+    padding: 48px 64px 96px;
+    max-width: 900px;
+  }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    padding-bottom: 40px;
+    margin-bottom: 48px;
+    border-bottom: 1px solid var(--ink-faint);
+  }
+  .page-hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 42px; font-weight: 400;
+    line-height: 1.1; color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .page-hero h1 span { color: var(--accent); }
+  .page-hero .subtitle {
+    font-size: 16px; color: var(--ink-mid);
+    font-weight: 300; margin-bottom: 24px;
+  }
+  .meta-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px; background: var(--ink-faint);
+    border: 1px solid var(--ink-faint); border-radius: 10px; overflow: hidden;
+  }
+  .meta-cell {
+    background: var(--white);
+    padding: 12px 16px;
+  }
+  .meta-cell .label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 3px; }
+  .meta-cell .value { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .meta-cell .value.active { color: var(--success); }
+
+  /* ── SECTION ── */
+  .doc-section {
+    margin-bottom: 60px;
+    scroll-margin-top: calc(var(--header-h) + 24px);
+  }
+  .section-header {
+    display: flex; align-items: baseline; gap: 12px;
+    margin-bottom: 24px; padding-bottom: 12px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .section-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px; color: var(--accent); font-weight: 500;
+  }
+  .section-header h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px; font-weight: 400; color: var(--ink);
+  }
+  .section-header h3 {
+    font-size: 15px; font-weight: 500; color: var(--ink-mid);
+    margin: 0 0 16px; padding: 0;
+  }
+  .subsection { margin-bottom: 36px; scroll-margin-top: calc(var(--header-h) + 24px); }
+  .subsection-title {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--ink-light);
+    margin-bottom: 14px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--ink-faint);
+  }
+
+  /* ── PROSE ── */
+  p { color: var(--ink-mid); margin-bottom: 14px; }
+  p strong { color: var(--ink); }
+  blockquote {
+    border-left: 3px solid var(--tier-a);
+    padding: 10px 16px;
+    background: var(--tier-a-bg);
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 20px;
+    font-size: 14px; color: var(--ink-mid);
+  }
+
+  /* ── COLOR SWATCHES ── */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px; margin-bottom: 24px;
+  }
+  .color-swatch {
+    border: 1px solid var(--ink-faint); border-radius: 8px; overflow: hidden;
+  }
+  .swatch-color { height: 44px; }
+  .swatch-info { padding: 8px 10px; background: var(--white); }
+  .swatch-name { font-size: 11px; font-weight: 600; color: var(--ink); letter-spacing: 0.04em; }
+  .swatch-hex { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ink-light); }
+  .swatch-use { font-size: 10px; color: var(--ink-light); margin-top: 2px; line-height: 1.3; }
+
+  /* ── CODE BLOCKS ── */
+  .code-block {
+    background: var(--ink);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+  }
+  .code-block pre {
+    font-family: 'DM Mono', monospace;
+    font-size: 12.5px; color: #C8D3E8;
+    line-height: 1.7; white-space: pre;
+  }
+  .code-block pre .comment { color: #5A6E8A; }
+  .code-block pre .key { color: #F5A623; }
+  .code-block pre .val { color: #7DD3C0; }
+  .code-block pre .hex { color: #F09060; }
+
+  /* ── RULE LISTS ── */
+  .rule-list { list-style: none; margin-bottom: 20px; }
+  .rule-list li {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 7px 0; border-bottom: 1px solid var(--paper-warm);
+    font-size: 13.5px; color: var(--ink-mid);
+  }
+  .rule-list li:last-child { border-bottom: none; }
+  .rule-list li::before {
+    content: '—'; color: var(--accent); flex-shrink: 0;
+    font-weight: 600; margin-top: 1px;
+  }
+  .rule-list.never li::before { content: '✕'; color: var(--error); font-size: 11px; margin-top: 3px; }
+  .rule-list.always li::before { content: '✓'; color: var(--success); font-size: 13px; margin-top: 1px; }
+
+  /* ── TIER BLOCKS ── */
+  .tier-block {
+    border-radius: 10px; overflow: hidden;
+    margin-bottom: 24px;
+    border: 1px solid var(--ink-faint);
+  }
+  .tier-row {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .tier-row:last-child { border-bottom: none; }
+  .tier-row.tier-a { background: var(--tier-a-bg); border-left: 4px solid var(--tier-a); }
+  .tier-row.tier-b { background: var(--tier-b-bg); border-left: 4px solid var(--tier-b); }
+  .tier-row.tier-c { background: var(--tier-c-bg); border-left: 4px solid var(--tier-c); }
+  .tier-tag {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 4px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .tier-row.tier-a .tier-tag { color: var(--tier-a); }
+  .tier-row.tier-b .tier-tag { color: var(--tier-b); }
+  .tier-row.tier-c .tier-tag { color: var(--tier-c); }
+  .tier-applies {
+    font-size: 11px; color: var(--ink-light);
+    margin-bottom: 6px; font-style: italic;
+  }
+  .tier-content { font-size: 13px; color: var(--ink-mid); line-height: 1.6; }
+  .tier-content strong { color: var(--ink); }
+
+  /* ── PROHIBITED BLOCK ── */
+  .prohibited-block {
+    background: #FEF2F0;
+    border: 1px solid #F5C6C1;
+    border-left: 4px solid var(--error);
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+  .prohibited-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--error); margin-bottom: 4px;
+  }
+  .prohibited-text { font-size: 13px; color: var(--ink-mid); }
+  .prohibited-instead { font-size: 12px; color: var(--success); margin-top: 4px; }
+  .prohibited-instead::before { content: '→ '; font-weight: 600; }
+
+  /* ── COMPONENT TABLE ── */
+  .component-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; font-size: 13px; }
+  .component-table th {
+    text-align: left; padding: 8px 12px;
+    background: var(--ink); color: var(--white);
+    font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .component-table th:first-child { border-radius: 6px 0 0 0; }
+  .component-table th:last-child { border-radius: 0 6px 0 0; }
+  .component-table td {
+    padding: 9px 12px; border-bottom: 1px solid var(--ink-faint);
+    color: var(--ink-mid); vertical-align: top;
+  }
+  .component-table tr:hover td { background: var(--paper); }
+  .comp-name { font-weight: 600; color: var(--ink); white-space: nowrap; }
+  .comp-mds {
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    background: var(--ink); color: #7DD3C0;
+    padding: 2px 7px; border-radius: 4px; white-space: nowrap;
+  }
+  .comp-note { font-size: 12px; color: var(--ink-light); }
+
+  /* ── A11Y TIERS ── */
+  .a11y-tier {
+    border-radius: 8px; padding: 16px 18px; margin-bottom: 16px;
+  }
+  .a11y-tier.t1 { background: #E6F4EE; border: 1px solid #9DD5BA; }
+  .a11y-tier.t2 { background: #FFF8EC; border: 1px solid #F5D589; }
+  .a11y-tier.t3 { background: #FEF2F0; border: 1px solid #F5C6C1; }
+  .a11y-tier-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .a11y-badge {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 3px 8px; border-radius: 4px;
+  }
+  .t1 .a11y-badge { background: var(--success); color: white; }
+  .t2 .a11y-badge { background: var(--warning); color: white; }
+  .t3 .a11y-badge { background: var(--error); color: white; }
+  .a11y-tier-title { font-size: 14px; font-weight: 600; color: var(--ink); }
+  .a11y-checklist { list-style: none; }
+  .a11y-checklist li {
+    display: flex; gap: 8px; font-size: 13px; color: var(--ink-mid);
+    padding: 3px 0;
+  }
+  .a11y-checklist li::before { content: '✓'; color: var(--success); font-weight: 700; flex-shrink: 0; }
+  .t3 .a11y-checklist li::before { content: '✕'; color: var(--error); }
+
+  /* ── DESTRUCTIVE PROTOCOL ── */
+  .protocol-steps { display: flex; flex-direction: column; gap: 0; }
+  .protocol-step {
+    display: flex; gap: 16px; padding: 14px 0;
+    border-bottom: 1px solid var(--ink-faint);
+  }
+  .protocol-step:last-child { border-bottom: none; }
+  .step-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--ink); color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 600; flex-shrink: 0; margin-top: 1px;
+  }
+  .step-label { font-size: 11px; font-weight: 600; color: var(--ink-light); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
+  .step-value { font-size: 13.5px; color: var(--ink-mid); }
+  .step-value code {
+    font-family: 'DM Mono', monospace; font-size: 12px;
+    background: var(--ink); color: #F5A623;
+    padding: 1px 6px; border-radius: 3px;
+  }
+
+  /* ── DRIFT TABLE ── */
+  .drift-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .drift-card { border-radius: 8px; padding: 16px; }
+  .drift-card.intentional { background: #E6F4EE; border: 1px solid #9DD5BA; }
+  .drift-card.accidental { background: #FEF2F0; border: 1px solid #F5C6C1; }
+  .drift-card-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .drift-card.intentional .drift-card-title { color: var(--success); }
+  .drift-card.accidental .drift-card-title { color: var(--error); }
+  .drift-item { font-size: 12.5px; color: var(--ink-mid); padding: 4px 0; display: flex; gap: 8px; }
+  .drift-item::before { content: '·'; color: var(--ink-light); flex-shrink: 0; }
+
+  /* ── CHANGELOG TABLE ── */
+  .changelog-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .changelog-table th {
+    text-align: left; padding: 8px 12px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-light);
+    border-bottom: 2px solid var(--ink-faint);
+  }
+  .changelog-table td { padding: 10px 12px; border-bottom: 1px solid var(--ink-faint); color: var(--ink-mid); }
+  .changelog-table tr:first-child td { color: var(--ink); font-weight: 500; }
+  .changelog-table .date { font-family: 'DM Mono', monospace; font-size: 12px; white-space: nowrap; }
+  .changelog-table .ver {
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    background: var(--tier-a-bg); color: var(--tier-a);
+    padding: 2px 6px; border-radius: 4px;
+  }
+
+  /* ── AI QUICK REF ── */
+  .quick-ref {
+    background: var(--ink); border-radius: 12px;
+    padding: 28px 32px;
+  }
+  .quick-ref h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px; color: var(--white); margin-bottom: 20px;
+    font-weight: 400;
+  }
+  .quick-ref-list { list-style: none; }
+  .quick-ref-list li {
+    display: flex; gap: 12px; padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: #8B99B8; font-size: 13.5px; line-height: 1.5;
+  }
+  .quick-ref-list li:last-child { border-bottom: none; }
+  .quick-ref-list li .num {
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    color: #F5A623; flex-shrink: 0; margin-top: 3px; width: 16px;
+  }
+  .quick-ref-list li strong { color: var(--white); }
+  .quick-ref-list code {
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    background: rgba(255,255,255,0.1); color: #7DD3C0;
+    padding: 1px 6px; border-radius: 3px;
+  }
+
+  /* ── SCROLLSPY ── */
+  @media (max-width: 900px) {
+    aside { display: none; }
+    main { margin-left: 0; padding: 24px 20px 60px; }
+    header { padding-left: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-logo">design<span>.md</span></div>
+  <div style="width:1px;height:20px;background:rgba(255,255,255,0.15)"></div>
+  <div style="font-size:13px;color:#6B7A99;">Meridian Learning Group</div>
+  <div class="header-meta">
+    <span class="status-pill">Active</span>
+    <span class="version-tag">v1.2</span>
+  </div>
+</header>
+
+<aside>
+  <div class="nav-section-label">Overview</div>
+  <a class="nav-link active" href="#intro">Introduction</a>
+  <a class="nav-link" href="#status">File status</a>
+
+  <div class="nav-section-label">Specification</div>
+  <a class="nav-link" href="#tokens">1. Visual tokens</a>
+  <a class="nav-sub" href="#colors">Color palette</a>
+  <a class="nav-sub" href="#type">Typography</a>
+  <a class="nav-sub" href="#spacing">Spacing</a>
+  <a class="nav-link" href="#components">2. Component vocabulary</a>
+  <a class="nav-sub" href="#nav-comp">Navigation</a>
+  <a class="nav-sub" href="#actions">Actions</a>
+  <a class="nav-sub" href="#forms">Forms</a>
+  <a class="nav-link" href="#behavioral">3. Behavioral contracts</a>
+  <a class="nav-sub" href="#always">Always do</a>
+  <a class="nav-sub" href="#never">Never do</a>
+  <a class="nav-sub" href="#destructive">Destructive actions</a>
+  <a class="nav-link" href="#a11y">4. Accessibility</a>
+  <a class="nav-sub" href="#a11y-t1">Tier 1 — Automated</a>
+  <a class="nav-sub" href="#a11y-t2">Tier 2 — Human review</a>
+  <a class="nav-sub" href="#a11y-t3">Tier 3 — Prohibited</a>
+  <a class="nav-link" href="#voice">5. Voice &amp; copy</a>
+  <a class="nav-link" href="#architecture">6. Brand architecture</a>
+  <a class="nav-link" href="#refs">7. References</a>
+  <a class="nav-link" href="#changelog">8. Change log</a>
+  <a class="nav-link" href="#airef">AI quick reference</a>
+
+  <div class="tier-legend">
+    <div class="tier-leg-item"><div class="tier-dot"></div><span class="tier-leg-label">Tier A — Fully aligned</span></div>
+    <div class="tier-leg-item"><div class="tier-dot"></div><span class="tier-leg-label">Tier B — Loosely aligned</span></div>
+    <div class="tier-leg-item"><div class="tier-dot"></div><span class="tier-leg-label">Tier C — Independent</span></div>
+  </div>
+</aside>
+
+<main>
+
+  <!-- HERO -->
+  <div class="page-hero" id="intro">
+    <h1>design<span>.</span>md</h1>
+    <p class="subtitle">Parent Brand Specification with Hybrid Architecture Guidance — Meridian Learning Group</p>
+    <div class="meta-grid">
+      <div class="meta-cell"><div class="label">Status</div><div class="value active">● Active</div></div>
+      <div class="meta-cell"><div class="label">Version</div><div class="value">1.2</div></div>
+      <div class="meta-cell"><div class="label">Updated</div><div class="value">2025-03-01</div></div>
+      <div class="meta-cell"><div class="label">Owner</div><div class="value">Sarah Chen, VP Design Systems</div></div>
+      <div class="meta-cell"><div class="label">Applies to</div><div class="value">All UI</div></div>
+      <div class="meta-cell"><div class="label">WCAG target</div><div class="value">2.1 AA</div></div>
+    </div>
+  </div>
+
+  <div class="doc-section" id="status">
+    <blockquote>
+      This file is the authoritative brand and design contract for all Meridian Learning Group products. It includes guidance for subsidiary brands at each level of brand attachment. Readable by humans. Parseable by AI coding agents.
+    </blockquote>
+    <p>Throughout this document, tier annotation blocks indicate how each rule applies across the three brand attachment levels. <strong>Intentional divergence documented here is approved. Any design decision not documented here is drift until proven otherwise.</strong></p>
+
+    <div class="tier-block">
+      <div class="tier-row tier-a">
+        <div class="tier-tag">● Tier A — Fully aligned</div>
+        <div class="tier-applies">Meridian.com, Meridian Learn, Meridian Press</div>
+        <div class="tier-content">This entire file applies in full. No substitutions permitted.</div>
+      </div>
+      <div class="tier-row tier-b">
+        <div class="tier-tag">● Tier B — Loosely aligned</div>
+        <div class="tier-applies">Pathwright (acquired edtech platform)</div>
+        <div class="tier-content">Shares behavioral and accessibility layers in full. May substitute visual tokens where explicitly documented.</div>
+      </div>
+      <div class="tier-row tier-c">
+        <div class="tier-tag">● Tier C — Independent</div>
+        <div class="tier-applies">Vantage Professional (corporate certification division)</div>
+        <div class="tier-content">Maintains independent brand identity. Must implement behavioral contracts and all accessibility contracts in full. Visual tokens are Vantage's own.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: VISUAL TOKENS -->
+  <div class="doc-section" id="tokens">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <h2>Visual tokens</h2>
+    </div>
+
+    <div class="subsection" id="colors">
+      <div class="subsection-title">Color palette</div>
+      <div class="color-grid">
+        <div class="color-swatch"><div class="swatch-color" style="background:#1A5EAB"></div><div class="swatch-info"><div class="swatch-name">PRIMARY ACTION</div><div class="swatch-hex">#1A5EAB</div><div class="swatch-use">Buttons, key links, active states</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#144D8C"></div><div class="swatch-info"><div class="swatch-name">PRIMARY HOVER</div><div class="swatch-hex">#144D8C</div><div class="swatch-use">Hover and pressed states</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#F0F5FB;border-bottom:1px solid #D1DBE8"></div><div class="swatch-info"><div class="swatch-name">SECONDARY ACTION</div><div class="swatch-hex">#F0F5FB</div><div class="swatch-use">Secondary buttons, subtle CTAs</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#1A1F36"></div><div class="swatch-info"><div class="swatch-name">TEXT PRIMARY</div><div class="swatch-hex">#1A1F36</div><div class="swatch-use">Body text, headings, labels</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#5A6481"></div><div class="swatch-info"><div class="swatch-name">TEXT SECONDARY</div><div class="swatch-hex">#5A6481</div><div class="swatch-use">Captions, metadata, support</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#1A7F5A"></div><div class="swatch-info"><div class="swatch-name">SUCCESS</div><div class="swatch-hex">#1A7F5A</div><div class="swatch-use">Confirmation, success states</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#B45309"></div><div class="swatch-info"><div class="swatch-name">WARNING</div><div class="swatch-hex">#B45309</div><div class="swatch-use">Cautionary, non-critical alerts</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#C0392B"></div><div class="swatch-info"><div class="swatch-name">ERROR</div><div class="swatch-hex">#C0392B</div><div class="swatch-use">Errors only — never decorative</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#F5A623"></div><div class="swatch-info"><div class="swatch-name">FOCUS RING</div><div class="swatch-hex">#F5A623</div><div class="swatch-use">Keyboard focus — never suppress</div></div></div>
+      </div>
+
+      <ul class="rule-list never">
+        <li>Use a color outside this palette without explicit Design Systems approval</li>
+        <li>Use color as the only means of conveying information</li>
+        <li>Use ERROR color (#C0392B) for anything except actual errors</li>
+        <li>Suppress or override the FOCUS RING under any circumstances</li>
+      </ul>
+
+      <div class="prohibited-block">
+        <div class="prohibited-label">Prohibited combination</div>
+        <div class="prohibited-text">#5A6481 on #FFFFFF at text sizes below 16px</div>
+        <div class="prohibited-instead">Use TEXT PRIMARY (#1A1F36) instead — fails WCAG AA at small sizes</div>
+      </div>
+      <div class="prohibited-block">
+        <div class="prohibited-label">Prohibited combination</div>
+        <div class="prohibited-text">#FFFFFF on #1A5EAB at sizes below 14px</div>
+        <div class="prohibited-instead">Marginal contrast — minimum 14px for white on primary blue</div>
+      </div>
+
+      <div class="tier-block">
+        <div class="tier-row tier-a">
+          <div class="tier-tag">● Tier A</div>
+          <div class="tier-content">Use this palette exactly. No substitutions. Internal tools must also use this palette — not arbitrary CSS framework defaults.</div>
+        </div>
+        <div class="tier-row tier-b">
+          <div class="tier-tag">● Tier B — Pathwright</div>
+          <div class="tier-content">Pathwright retains its own primary palette (teal <strong>#007C91</strong>, white, dark navy). <strong>Required to adopt:</strong> FOCUS RING, SUCCESS, WARNING, ERROR, TEXT DISABLED. Semantic colors must be consistent across the Meridian product family.</div>
+        </div>
+        <div class="tier-row tier-c">
+          <div class="tier-tag">● Tier C — Vantage Professional</div>
+          <div class="tier-content">Vantage maintains its own full palette (charcoal, gold, white). <strong>Required to adopt:</strong> SUCCESS, WARNING, ERROR hex values only. All other color decisions are Vantage's own.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection" id="type">
+      <div class="subsection-title">Typography</div>
+      <div class="code-block"><pre><span class="key">PRIMARY FONT:</span>   <span class="val">Source Serif 4</span>   <span class="comment">Editorial, marketing, reading content</span>
+<span class="key">UI FONT:</span>         <span class="val">Inter</span>            <span class="comment">All UI chrome — nav, forms, labels, buttons</span>
+<span class="key">MONOSPACE:</span>       <span class="val">JetBrains Mono</span>   <span class="comment">Code, identifiers, technical values only</span>
+
+<span class="comment">NOTE: Never use Source Serif 4 for UI elements.</span>
+<span class="comment">      Never use Inter for article body content.</span>
+
+<span class="key">UI SCALE (Inter):</span>
+  <span class="val">H1</span>      <span class="hex">32px</span>  weight: 600  line-height: 1.2
+  <span class="val">H2</span>      <span class="hex">24px</span>  weight: 600  line-height: 1.3
+  <span class="val">H3</span>      <span class="hex">20px</span>  weight: 500  line-height: 1.4
+  <span class="val">Body</span>    <span class="hex">16px</span>  weight: 400  line-height: 1.6
+  <span class="val">Small</span>   <span class="hex">14px</span>  weight: 400  line-height: 1.5  <span class="comment">captions, metadata</span>
+  <span class="val">Label</span>   <span class="hex">13px</span>  weight: 500  line-height: 1.4  <span class="comment">form labels, tags</span></pre></div>
+
+      <ul class="rule-list never">
+        <li>Set body text below 14px in any context including mobile</li>
+        <li>Use Source Serif 4 for buttons, labels, or navigation</li>
+        <li>Use ALL CAPS for strings longer than 4 words</li>
+        <li>Use italic outside pull quotes, citations, or editorial emphasis</li>
+      </ul>
+
+      <div class="tier-block">
+        <div class="tier-row tier-a"><div class="tier-tag">● Tier A</div><div class="tier-content">Both font families required. No system font substitutions in production.</div></div>
+        <div class="tier-row tier-b"><div class="tier-tag">● Tier B — Pathwright</div><div class="tier-content">Pathwright uses <strong>DM Sans</strong> (approved substitution for Inter in UI). Source Serif 4 required for Meridian-branded editorial content surfaced within Pathwright.</div></div>
+        <div class="tier-row tier-c"><div class="tier-tag">● Tier C — Vantage</div><div class="tier-content">Full font independence. Vantage uses Neue Haas Grotesk + Tiempos Text. 14px minimum body size still applies.</div></div>
+      </div>
+    </div>
+
+    <div class="subsection" id="spacing">
+      <div class="subsection-title">Spacing system — base 8px</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px;margin-bottom:20px">
+        <div style="text-align:center">
+          <div style="height:4px;background:var(--tier-a);border-radius:2px;margin:0 auto 6px;width:4px"></div>
+          <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--ink)">xs — 4px</div>
+          <div style="font-size:11px;color:var(--ink-light)">icon gap</div>
+        </div>
+        <div style="text-align:center">
+          <div style="height:8px;background:var(--tier-a);border-radius:2px;margin:0 auto 6px;width:8px"></div>
+          <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--ink)">sm — 8px</div>
+          <div style="font-size:11px;color:var(--ink-light)">tight groups</div>
+        </div>
+        <div style="text-align:center">
+          <div style="height:16px;background:var(--tier-a);border-radius:2px;margin:0 auto 6px;width:16px"></div>
+          <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--ink)">md — 16px</div>
+          <div style="font-size:11px;color:var(--ink-light)">buttons, cards</div>
+        </div>
+        <div style="text-align:center">
+          <div style="height:24px;background:var(--tier-a);border-radius:2px;margin:0 auto 6px;width:24px"></div>
+          <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--ink)">lg — 24px</div>
+          <div style="font-size:11px;color:var(--ink-light)">sections</div>
+        </div>
+        <div style="text-align:center">
+          <div style="height:40px;background:var(--tier-a);border-radius:2px;margin:0 auto 6px;width:40px"></div>
+          <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--ink)">xl — 40px</div>
+          <div style="font-size:11px;color:var(--ink-light)">major breaks</div>
+        </div>
+        <div style="text-align:center">
+          <div style="height:48px;background:var(--tier-a);border-radius:2px;margin:0 auto 6px;width:48px"></div>
+          <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--ink)">2xl — 64px</div>
+          <div style="font-size:11px;color:var(--ink-light)">page rhythm</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: COMPONENTS -->
+  <div class="doc-section" id="components">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <h2>Component vocabulary</h2>
+    </div>
+    <p style="margin-bottom:24px">Match every UI job to its approved component. If no component is defined, use the closest and flag it: <code style="font-family:'DM Mono',monospace;font-size:12px;background:var(--ink);color:#F5A623;padding:2px 6px;border-radius:3px">&lt;!-- design.md: no pattern defined, needs review --&gt;</code></p>
+
+    <div class="subsection" id="nav-comp">
+      <div class="subsection-title">Navigation</div>
+      <table class="component-table">
+        <thead><tr><th>Job</th><th>Component</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td class="comp-name">Primary nav</td><td><span class="comp-mds">MDS TopNav</span></td><td class="comp-note">Logo left, links center, account right. Never reorder. Max 6 links.</td></tr>
+          <tr><td class="comp-name">Secondary nav</td><td><span class="comp-mds">MDS SideNav</span></td><td class="comp-note">For application UIs. Never use with TabBar simultaneously.</td></tr>
+          <tr><td class="comp-name">Tab switching</td><td><span class="comp-mds">MDS TabBar</span></td><td class="comp-note">Content within same context only. Never for page-level navigation.</td></tr>
+          <tr><td class="comp-name">Breadcrumbs</td><td><span class="comp-mds">MDS Breadcrumb</span></td><td class="comp-note">Use when 3+ hierarchy levels present.</td></tr>
+          <tr><td class="comp-name">Back navigation</td><td><span class="comp-mds">MDS BackLink</span></td><td class="comp-note">"Back to [specific place]" — never just "Back".</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection" id="actions">
+      <div class="subsection-title">Actions</div>
+      <table class="component-table">
+        <thead><tr><th>Variant</th><th>Component</th><th>Rule</th></tr></thead>
+        <tbody>
+          <tr><td class="comp-name">Primary</td><td><span class="comp-mds">Button variant="primary"</span></td><td class="comp-note">One per visible region maximum. Verb-first label.</td></tr>
+          <tr><td class="comp-name">Secondary</td><td><span class="comp-mds">Button variant="secondary"</span></td><td class="comp-note">Supporting actions.</td></tr>
+          <tr><td class="comp-name">Ghost</td><td><span class="comp-mds">Button variant="ghost"</span></td><td class="comp-note">Low-emphasis actions competing with primary.</td></tr>
+          <tr><td class="comp-name">Destructive</td><td><span class="comp-mds">Button variant="destructive"</span></td><td class="comp-note">Always follow section 3.3 protocol. Never as primary action.</td></tr>
+          <tr><td class="comp-name">Icon only</td><td><span class="comp-mds">MDS IconButton</span></td><td class="comp-note">Always requires aria-label + tooltip. Never for primary actions.</td></tr>
+          <tr><td class="comp-name">Loading</td><td><span class="comp-mds">Button loading prop</span></td><td class="comp-note">Show after 200ms on all async actions.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection" id="forms">
+      <div class="subsection-title">Forms — always enforced</div>
+      <ul class="rule-list always">
+        <li>Every input must have a visible persistent label above the field — never placeholder-only</li>
+        <li>Reserve space below every input for an error message — never shift layout on error</li>
+        <li>Always validate on blur — never wait for submission to surface errors</li>
+        <li>Never clear a form on validation failure — always preserve user input</li>
+        <li>Never disable submit as the only error communication — show inline errors</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECTION 3: BEHAVIORAL -->
+  <div class="doc-section" id="behavioral">
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <h2>Behavioral contracts</h2>
+    </div>
+    <p style="margin-bottom:24px">Behavioral drift causes more user harm than visual drift. When a user encounters a new interaction paradigm they have to stop and learn. In a daily-use product, this compounds into friction, errors, and eroded trust.</p>
+
+    <div class="subsection" id="always">
+      <div class="subsection-title">Always do</div>
+      <ul class="rule-list always">
+        <li>Show Spinner or SkeletonLoader for any async operation exceeding 200ms</li>
+        <li>Confirm navigation away from unsaved changes — beforeunload + MDS Dialog</li>
+        <li>Return focus to the trigger element when any Modal, Dialog, or Drawer closes</li>
+        <li>Preserve all form input on validation error — never clear on failure</li>
+        <li>Show item count before executing any bulk action: "Delete 14 courses?"</li>
+        <li>Provide a visible skip-to-main-content link as the first focusable element on every page</li>
+        <li>Progress always shown as percentage AND fraction: "67% complete (4 of 6 modules)"</li>
+        <li>Certificates always show issue date and expiry date where applicable</li>
+      </ul>
+    </div>
+
+    <div class="subsection" id="never">
+      <div class="subsection-title">Never do</div>
+      <div class="prohibited-block"><div class="prohibited-label">Never</div><div class="prohibited-text">Custom dropdown built from divs without full ARIA keyboard implementation</div><div class="prohibited-instead">MDS Select or MDS Combobox</div></div>
+      <div class="prohibited-block"><div class="prohibited-label">Never</div><div class="prohibited-text">Use color alone to indicate status in course or assessment contexts</div><div class="prohibited-instead">Always pair with icon + text label</div></div>
+      <div class="prohibited-block"><div class="prohibited-label">Never</div><div class="prohibited-text">Auto-advance a learner to the next lesson without their explicit action</div><div class="prohibited-instead">Always require deliberate "Continue" or "Next" action — never auto-scroll</div></div>
+      <div class="prohibited-block"><div class="prohibited-label">Never</div><div class="prohibited-text">Use hover-only interactions to reveal required actions or information</div><div class="prohibited-instead">Visible controls at all times, or tap/click accessible equivalent</div></div>
+      <div class="prohibited-block"><div class="prohibited-label">Never</div><div class="prohibited-text">Use "Submit" for course or assessment completion actions</div><div class="prohibited-instead">"Complete lesson", "Turn in assignment", "Finish quiz"</div></div>
+      <div class="prohibited-block"><div class="prohibited-label">Never</div><div class="prohibited-text">Show a score or grade without full context</div><div class="prohibited-instead">Always show score, total, percentage, and pass threshold together</div></div>
+    </div>
+
+    <div class="subsection" id="destructive">
+      <div class="subsection-title">Destructive action protocol</div>
+      <p style="margin-bottom:20px">Applies to deleting courses, content, accounts, enrollments, certificates, or any irreversible action. <strong>This protocol is mandatory. Do not deviate.</strong></p>
+      <div class="protocol-steps">
+        <div class="protocol-step">
+          <div class="step-num">1</div>
+          <div><div class="step-label">Trigger</div><div class="step-value"><code>MDS Button variant="destructive"</code> — text only, never icon-only. Separated from non-destructive actions by 40px or a visible divider. Never in primary position.</div></div>
+        </div>
+        <div class="protocol-step">
+          <div class="step-num">2</div>
+          <div><div class="step-label">Confirmation dialog</div><div class="step-value">MDS Dialog with warning icon in ERROR color. Heading: "Delete [specific item name]?" Body must state exact consequences and affected users.</div></div>
+        </div>
+        <div class="protocol-step">
+          <div class="step-num">3</div>
+          <div><div class="step-label">Type-to-confirm</div><div class="step-value">Required when action affects 10+ users or published content. User must type the item name or the word DELETE.</div></div>
+        </div>
+        <div class="protocol-step">
+          <div class="step-num">4</div>
+          <div><div class="step-label">Labels</div><div class="step-value">Confirm: action-specific — "Delete course", "Revoke certificate". Never "OK" or "Yes". Cancel: always "Cancel". Escape cancels, never confirms.</div></div>
+        </div>
+        <div class="protocol-step">
+          <div class="step-num">5</div>
+          <div><div class="step-label">Undo</div><div class="step-value">Not available for most actions. Always state explicitly: "This cannot be undone." Exception: soft-delete with 30-day recovery — state recovery option in dialog body.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: A11Y -->
+  <div class="doc-section" id="a11y">
+    <div class="section-header">
+      <span class="section-number">04</span>
+      <h2>Accessibility contracts</h2>
+    </div>
+    <p style="margin-bottom:24px">WCAG 2.1 AA · ADA Title II · Section 508 · Education product. Testing: automated on every PR (axe-core CI gate), manual quarterly, AT user testing biannually.</p>
+
+    <div class="subsection" id="a11y-t1">
+      <div class="a11y-tier t1">
+        <div class="a11y-tier-header">
+          <span class="a11y-badge">Tier 1</span>
+          <span class="a11y-tier-title">Automated enforcement — every PR, CI gate blocks merge on failure</span>
+        </div>
+        <ul class="a11y-checklist">
+          <li>All text meets WCAG AA contrast (4.5:1 normal, 3:1 large text and UI components)</li>
+          <li>All interactive elements have an accessible name</li>
+          <li>All images have alt text — decorative images use alt=""</li>
+          <li>All form inputs are associated with a visible label</li>
+          <li>All form error messages linked via aria-describedby</li>
+          <li>Focus is never lost or sent to an unexpected location</li>
+          <li>Focus ring always visible — never suppressed</li>
+          <li>All interactive elements reachable and operable via keyboard</li>
+          <li>Valid document title on every page — format: "[Page] — [Product name]"</li>
+          <li>Heading hierarchy logical — no skipped levels</li>
+          <li>Language declared on html element</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subsection" id="a11y-t2">
+      <div class="a11y-tier t2">
+        <div class="a11y-tier-header">
+          <span class="a11y-badge">Tier 2</span>
+          <span class="a11y-tier-title">Human review required — QA sign-off before any feature ships</span>
+        </div>
+        <p style="font-size:12px;color:var(--ink-light);margin-bottom:10px">AI agents: flag with <code style="font-family:'DM Mono',monospace;font-size:11px;background:rgba(0,0,0,0.08);padding:1px 5px;border-radius:3px">&lt;!-- a11y tier 2 review required: [rule] --&gt;</code></p>
+        <ul class="a11y-checklist">
+          <li>Alt text is meaningful — reviewed by QA, not auto-generated</li>
+          <li>DOM reading order matches visual order — verified with screen reader</li>
+          <li>Timed assessments have pause and extend controls — design review required</li>
+          <li>Complex charts have text alternatives — reviewed by content team</li>
+          <li>Error messages are specific and actionable — copy reviewed before launch</li>
+          <li>Instructions do not rely solely on sensory characteristics</li>
+          <li>Animations respect prefers-reduced-motion</li>
+          <li>New interaction patterns reviewed by accessibility specialist</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subsection" id="a11y-t3">
+      <div class="a11y-tier t3">
+        <div class="a11y-tier-header">
+          <span class="a11y-badge">Tier 3</span>
+          <span class="a11y-tier-title">Prohibited patterns — identified through AT user testing, banned all tiers</span>
+        </div>
+        <ul class="a11y-checklist">
+          <li>Custom dropdown from divs — use MDS Select or Combobox</li>
+          <li>Drag-and-drop as only ordering mechanism — always pair with keyboard controls</li>
+          <li>Placeholder-only form labels — use persistent visible label above input</li>
+          <li>Icon-only buttons without accessible name — always add aria-label + tooltip</li>
+          <li>Auto-playing audio or video on page load — all media paused on load</li>
+          <li>Keyboard trap outside intentional modal focus management</li>
+          <li>Progress or score via chart only — always include text value alongside visual</li>
+          <li>Timed assessment with no countdown and no pause mechanism</li>
+        </ul>
+      </div>
+
+      <div class="tier-block" style="margin-top:20px">
+        <div class="tier-row tier-a"><div class="tier-tag">● Tier A</div><div class="tier-content">Full compliance. CI gate blocks merge on Tier 1 failures. No exceptions.</div></div>
+        <div class="tier-row tier-b"><div class="tier-tag">● Tier B — Pathwright</div><div class="tier-content">Full Tier 1, 2, 3. Section 4.5 education-specific rules required in full. axe-core CI required at same gate level.</div></div>
+        <div class="tier-row tier-c"><div class="tier-tag">● Tier C — Vantage</div><div class="tier-content">Tier 1 and 2 required. Tier 3 prohibited patterns apply in full. Assessment rules from 4.5 apply to all certification exam contexts.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: VOICE -->
+  <div class="doc-section" id="voice">
+    <div class="section-header">
+      <span class="section-number">05</span>
+      <h2>Voice &amp; copy standards</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px">
+      <div style="background:var(--tier-a-bg);border:1px solid var(--tier-a-border);border-radius:8px;padding:16px">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--tier-a);margin-bottom:8px">Voice is</div>
+        <div style="font-size:14px;color:var(--ink);line-height:1.7">Knowledgeable · Clear · Encouraging<br>Confidence without condescension.<br>Expertise without jargon.</div>
+      </div>
+      <div style="background:#FEF2F0;border:1px solid #F5C6C1;border-radius:8px;padding:16px">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--error);margin-bottom:8px">Voice is not</div>
+        <div style="font-size:14px;color:var(--ink);line-height:1.7">Corporate · Bureaucratic · Enthusiastic<br>Never "Congrats!" — "Well done."<br>Never "Amazing!"</div>
+      </div>
+    </div>
+
+    <div class="subsection-title" style="margin-bottom:14px">Terminology — always consistent</div>
+    <table class="component-table" style="margin-bottom:24px">
+      <thead><tr><th>Use</th><th>Never</th></tr></thead>
+      <tbody>
+        <tr><td class="comp-name">Learner</td><td class="comp-note">student, user, customer, participant</td></tr>
+        <tr><td class="comp-name">Course</td><td class="comp-note">class — module = a part of a course</td></tr>
+        <tr><td class="comp-name">Instructor</td><td class="comp-note">teacher, facilitator, host</td></tr>
+        <tr><td class="comp-name">Enroll</td><td class="comp-note">register, sign up, join (for course entry)</td></tr>
+        <tr><td class="comp-name">Complete</td><td class="comp-note">finish, done, submit (at course level)</td></tr>
+        <tr><td class="comp-name">Dashboard</td><td class="comp-note">home, portal, hub</td></tr>
+      </tbody>
+    </table>
+
+    <div class="tier-block">
+      <div class="tier-row tier-a"><div class="tier-tag">● Tier A</div><div class="tier-content">Full terminology compliance required.</div></div>
+      <div class="tier-row tier-b"><div class="tier-tag">● Tier B — Pathwright</div><div class="tier-content">Own voice permitted in Pathwright UI. Meridian terminology applies to Meridian catalog content surfaced within Pathwright.</div></div>
+      <div class="tier-row tier-c"><div class="tier-tag">● Tier C — Vantage</div><div class="tier-content">Full voice independence. "Candidate" not "Learner". "Examination" not "Course". Documented in Vantage's own design.md.</div></div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: ARCHITECTURE -->
+  <div class="doc-section" id="architecture">
+    <div class="section-header">
+      <span class="section-number">06</span>
+      <h2>Hybrid brand architecture</h2>
+    </div>
+    <p style="margin-bottom:24px">The tier assignment criteria and the distinction between intentional divergence and accidental drift are the core of this framework. <strong>The burden of proof is on the team introducing divergence, not the reviewer.</strong></p>
+
+    <div class="subsection-title" style="margin-bottom:14px">Intentional divergence vs. accidental drift</div>
+    <div class="drift-cols">
+      <div class="drift-card intentional">
+        <div class="drift-card-title">✓ Intentional divergence</div>
+        <div style="font-size:11px;color:var(--ink-light);margin-bottom:10px">Documented and approved — appears in this file</div>
+        <div class="drift-item">Pathwright uses teal #007C91 as primary — approved § 1.1</div>
+        <div class="drift-item">Vantage uses enterprise register — approved § 5</div>
+        <div class="drift-item">Pathwright uses DM Sans — approved § 1.2</div>
+      </div>
+      <div class="drift-card accidental">
+        <div class="drift-card-title">✕ Accidental drift</div>
+        <div style="font-size:11px;color:var(--ink-light);margin-bottom:10px">Not approved — must be remediated</div>
+        <div class="drift-item">Internal tool using Bootstrap defaults</div>
+        <div class="drift-item">Vantage modal not following § 3.3 protocol</div>
+        <div class="drift-item">Any color introduced without tier annotation</div>
+        <div class="drift-item">Placeholder-as-label anywhere (prohibited all tiers)</div>
+      </div>
+    </div>
+
+    <div style="background:var(--ink);border-radius:8px;padding:16px 20px;margin-bottom:24px">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#F5A623;margin-bottom:6px">The rule</div>
+      <div style="font-size:14px;color:#C8D3E8;line-height:1.6">If a design decision is not documented here with a tier annotation, it is drift until proven otherwise.</div>
+    </div>
+
+    <div class="subsection-title" style="margin-bottom:14px">Always shared — all tiers, no exceptions</div>
+    <ul class="rule-list always">
+      <li>Section 3 behavioral contracts in full</li>
+      <li>Accessibility Tier 1 automated enforcement</li>
+      <li>Accessibility Tier 2 human review</li>
+      <li>Accessibility Tier 3 prohibited patterns</li>
+      <li>Semantic color values — SUCCESS, WARNING, ERROR hex values consistent</li>
+      <li>Minimum touch target size 44×44px</li>
+      <li>Destructive action protocol — same pattern, own components permitted</li>
+      <li>Minimum body text size 14px · Focus ring always visible</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 7: REFS -->
+  <div class="doc-section" id="refs">
+    <div class="section-header">
+      <span class="section-number">07</span>
+      <h2>Design system references</h2>
+    </div>
+    <div class="code-block"><pre><span class="key">FIGMA:</span>          <span class="val">figma.com/file/[meridian-design-system]</span>
+<span class="key">STORYBOOK:</span>      <span class="val">design.meridianlearning.internal</span>
+<span class="key">TOKEN SOURCE:</span>   <span class="val">tokens/meridian-tokens.json</span>
+<span class="key">COMPONENT LIB:</span>  <span class="val">@meridian/mds v4.1.2</span>
+<span class="key">ICONS:</span>          <span class="val">Phosphor Icons v2.0</span> <span class="comment">— outline weight only</span>
+<span class="key">BRAND GUIDE:</span>    <span class="val">brand.meridianlearning.internal</span>
+<span class="key">A11Y GUIDE:</span>     <span class="val">a11y.meridianlearning.internal</span>
+<span class="key">PATHWRIGHT DS:</span>  <span class="val">design.pathwright.internal</span> <span class="comment">— Tier B reference</span>
+<span class="key">VANTAGE DS:</span>     <span class="val">design.vantagepro.internal</span> <span class="comment">— Tier C reference</span></pre></div>
+  </div>
+
+  <!-- SECTION 8: CHANGELOG -->
+  <div class="doc-section" id="changelog">
+    <div class="section-header">
+      <span class="section-number">08</span>
+      <h2>Change log</h2>
+    </div>
+    <table class="changelog-table">
+      <thead><tr><th>Date</th><th>Version</th><th>Changed by</th><th>Summary</th></tr></thead>
+      <tbody>
+        <tr><td class="date">2025-03-01</td><td><span class="ver">1.2</span></td><td>Sarah Chen</td><td>Added Tier C Vantage, updated a11y 4.5</td></tr>
+        <tr><td class="date">2024-11-15</td><td><span class="ver">1.1</span></td><td>Marcus Webb</td><td>Pathwright Tier B annotations, typography</td></tr>
+        <tr><td class="date">2024-06-01</td><td><span class="ver">1.0</span></td><td>Sarah Chen</td><td>Initial active version</td></tr>
+        <tr><td class="date">2024-03-10</td><td><span class="ver">0.1</span></td><td>Design Systems team</td><td>Draft</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- AI QUICK REF -->
+  <div class="doc-section" id="airef">
+    <div class="quick-ref">
+      <h3>For AI coding agents — quick reference</h3>
+      <ol class="quick-ref-list">
+        <li><span class="num">1</span><div><strong>Identify your tier</strong> — Tier A (Meridian core), Tier B (Pathwright), Tier C (Vantage). If unclear, ask before generating any UI.</div></li>
+        <li><span class="num">2</span><div><strong>Tier A:</strong> this entire file applies in full. No substitutions.</div></li>
+        <li><span class="num">3</span><div><strong>Tier B:</strong> visual tokens may use Pathwright-approved substitutions documented in each section. All behavioral and accessibility rules apply in full.</div></li>
+        <li><span class="num">4</span><div><strong>Tier C:</strong> visual tokens are Vantage's own — consult Vantage's design.md. All behavioral and accessibility rules from this file apply in full.</div></li>
+        <li><span class="num">5</span><div><strong>Component mismatch:</strong> add <code>&lt;!-- design.md: no pattern defined for [component], needs review --&gt;</code></div></li>
+        <li><span class="num">6</span><div><strong>Color not in palette:</strong> do not use it. Add <code>&lt;!-- design.md: color not in approved palette, needs review --&gt;</code></div></li>
+        <li><span class="num">7</span><div><strong>NEVER list (§ 3.2):</strong> if a pattern is listed, do not implement it regardless of how it was specified.</div></li>
+        <li><span class="num">8</span><div><strong>Every UI component:</strong> apply all Tier 1 a11y rules automatically. Flag Tier 2 items: <code>&lt;!-- a11y tier 2 review required: [rule] --&gt;</code></div></li>
+        <li><span class="num">9</span><div><strong>Destructive actions:</strong> always implement § 3.3 exactly. No shortcuts.</div></li>
+        <li><span class="num">10</span><div><strong>When uncertain:</strong> do not invent. Flag and ask.</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div style="border-top:1px solid var(--ink-faint);padding-top:24px;font-size:12px;color:var(--ink-light)">
+    Meridian Learning Group is a fictional company created for illustrative purposes. design.md open standard v0.1.
+  </div>
+
+</main>
+
+<script>
+  // Scrollspy
+  const links = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('.doc-section, .page-hero');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        links.forEach(l => {
+          l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-60px 0px -70% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
