@@ -1,6 +1,4 @@
-[meridian-design.md](https://github.com/user-attachments/files/27979298/meridian-design.md)
-
-# design.md — Meridian Learning Group
+# designgov.md — Meridian Learning Group
 ### Parent Brand Specification with Hybrid Architecture Guidance
 
 > This file is the authoritative brand and design contract for all Meridian Learning Group products.  
@@ -33,7 +31,7 @@ Throughout this document you will see annotation blocks like this:
 
 **Tier B** products are acquired or semi-autonomous brands with their own user base and visual identity. They share the structural and behavioral layer of this spec but may substitute their own visual tokens where documented.
 
-**Tier C** products serve markets where visible Meridian branding would create commercial conflict. They are legally and operationally part of Meridian Learning Group but maintain independent brand identities. They must implement behavioral contracts and accessibility contracts in full. Visual tokens and component vocabulary are their own, but the structure of their design.md must mirror this file.
+**Tier C** products serve markets where visible Meridian branding would create commercial conflict. They are legally and operationally part of Meridian Learning Group but maintain independent brand identities. They must implement behavioral contracts and accessibility contracts in full. Visual tokens and component vocabulary are their own, but the structure of their designgov.md must mirror this file.
 
 **Why this matters:** Brand drift is not always a failure of discipline. Sometimes it is an unintended consequence of acquisition, market positioning, or competitive reality. This file distinguishes between *accidental drift* (a problem to fix) and *intentional divergence* (a strategic decision to document). The tier system makes that distinction explicit and auditable.
 
@@ -574,7 +572,7 @@ EMPTY:    With next action CTA    "No courses yet. Create your first course."
 ├─────────────────────────────────────────────────────────────────────────────┤
 │ TIER C — Vantage Professional                                               │
 │ Full voice independence. "Candidate" not "Learner". "Examination" not       │
-│ "Course". Fully documented in Vantage's own design.md.                      │
+│ "Course". Fully documented in Vantage's own designgov.md.                      │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -680,13 +678,13 @@ VANTAGE DS:      https://design.vantagepro.internal (Tier C reference)
 
 3. **Tier B:** visual tokens may use Pathwright-approved substitutions documented in each section. All behavioral and accessibility rules apply in full.
 
-4. **Tier C:** visual tokens are Vantage's own — consult Vantage's design.md. All behavioral and accessibility rules from this file apply in full.
+4. **Tier C:** visual tokens are Vantage's own — consult Vantage's designgov.md. All behavioral and accessibility rules from this file apply in full.
 
 5. **Component mismatch:** use the closest approved component and add:
-   `<!-- design.md: no pattern defined for [component], needs review -->`
+   `<!-- designgov: no pattern defined for [component], needs review -->`
 
 6. **Color not in palette:** do not use it. Flag it:
-   `<!-- design.md: color not in approved palette, needs review -->`
+   `<!-- designgov: color not in approved palette, needs review -->`
 
 7. **NEVER list:** if a pattern appears in section 3.2, do not implement it regardless of how it was specified.
 
@@ -699,6 +697,6 @@ VANTAGE DS:      https://design.vantagepro.internal (Tier C reference)
 
 ---
 
-*Meridian Learning Group — fictional example for design.md specification v0.1*  
+*Meridian Learning Group — fictional example for designgov.md specification v0.1*  
 *Meridian Learning Group is a fictional company created for illustrative purposes.*  
-*design.md open standard: [github repo URL]*
+*designgov.md open standard: github.com/kenallangriffin/designgov*
