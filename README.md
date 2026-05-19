@@ -220,7 +220,7 @@ A `designgov.md` file has eight sections:
 - Three-tier accessibility framework for an education product
 - Hybrid brand architecture across a parent brand, an acquired edtech platform, and a competitor-adjacent subsidiary
 
-[View the rendered example →](https://[your-username].github.io/designgov/examples/meridian/)
+[View the rendered example →](https://kenallangriffin.github.io/designgov/examples/meridian/)
 
 **3. Add it to your repo**
 
@@ -249,13 +249,19 @@ Before generating any UI component, read designgov.md.
 
 ---
 
-## Why this matters for education products
+## Why this matters across industries
 
-Education products have legal accessibility obligations — Section 508, ADA Title II, and state-level enforcement with real teeth. A dev team building a feature without design support, without an accessibility contract in the repo, is creating liability that compounds with every release.
+The governance problem `designgov.md` solves shows up differently in different industries — but the root cause is always the same: design decisions being made without a structured constraint set, at the moment code is written.
 
-Behavioral drift in education products is particularly harmful. When learners encounter a new interaction pattern in a daily-use tool, they don't think "this was built without design support." They think the product is broken. For learners using assistive technology, it may simply not work at all.
+**In education products**, the stakes are legal. Section 508, ADA Title II, and state-level enforcement mean that a dev team building a feature without design support, without an accessibility contract in the repo, is creating liability that compounds with every release. Behavioral drift is particularly harmful — when learners encounter a new interaction pattern in a daily-use tool, they don't think "this was built without design support." They think the product is broken. For learners using assistive technology, it may simply not work at all.
 
-`designgov.md` includes education-specific accessibility guidance: MathML requirements for math notation, assessment timer controls, accommodation flag handling, and a list of prohibited patterns identified through user testing with screen readers and switch access devices in real institutional environments.
+**In healthcare products**, the stakes are clinical. UI inconsistency in a patient-facing or clinical tool isn't just a brand problem — it's a safety problem. Session timeouts, confirmation patterns, and data display conventions need to be governed, not guessed at.
+
+**In financial services**, the stakes are regulatory. Disclosure requirements, fraud patterns, and accessibility obligations for aging and low-literacy populations require governance that survives leadership changes and product team turnover.
+
+**In any organization that has grown through acquisition**, the stakes are commercial. Forcing an acquired product into the parent brand alienates its existing users. Letting it drift with no governance erodes the portfolio. The answer — a structured tier system that distinguishes intentional divergence from accidental drift — requires documentation, not discipline.
+
+`designgov.md` includes vertical-specific guidance for Education, Healthcare, Financial services, and Government in section 4.5 of the spec.
 
 ---
 
@@ -263,9 +269,11 @@ Behavioral drift in education products is particularly harmful. When learners en
 
 **Design leads and design ops professionals** who need a governance framework that travels with the codebase — not a Confluence doc nobody reads.
 
-**Brand and marketing teams** at organizations that have grown through acquisition, who need a structured way to distinguish intentional brand divergence from accidental drift.
+**Brand and marketing teams** at organizations that have grown through acquisition, merger, or spin-off — who need a structured way to distinguish intentional brand divergence from accidental drift. If your company has ever asked "why does this product look like it belongs to a different company," this is for you.
 
-**Engineering and product leaders** at edtech companies who are managing accessibility debt and need a compliance framework that's enforceable at the moment code is written, not discovered in an audit six months later.
+**Engineering and product leaders** at any company managing accessibility debt — who need a compliance framework that's enforceable at the moment code is written, not discovered in an audit six months later.
+
+**Organizations in markets that shift** — where leadership changes, acquisitions, or competitive pivots mean your brand portfolio is constantly in motion. The question is never just "how do we make everything consistent." It's "what should be the same, what can differ, and what must never change regardless of what else changes around it."
 
 **Anyone using AI-assisted development** who has shipped a feature and cringed at the UI the agent produced — not because the colors were wrong, but because it invented a new way to confirm a destructive action, or built a form with placeholder text as the only label.
 
@@ -294,7 +302,7 @@ Both files together give an AI coding agent a complete picture of your brand —
 
 - **Add an example** — fill out the spec for a real or fictional product and submit a PR to `examples/`
 - **Improve the spec** — if you encounter a governance problem the current spec doesn't address, open an issue
-- **Vertical extensions** — the education-specific accessibility section (4.5) is a model for vertical extensions. Healthcare, government, and fintech all have domain-specific governance requirements worth encoding
+- **Vertical extensions** — the vertical extensions section (4.5) includes Education, Healthcare, Financial services, and Government. Each has more depth than a single section can capture. Healthcare, enterprise software, media, and other industries also have domain-specific governance requirements worth encoding.
 - **Tooling** — validators, generators, Figma plugins, CI integrations — all welcome
 
 See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for guidelines.
